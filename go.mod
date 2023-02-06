@@ -1,4 +1,4 @@
-module go-ineraction-bot
+module afet-yardim-bot
 
 go 1.20
 
