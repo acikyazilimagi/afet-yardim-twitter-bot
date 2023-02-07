@@ -7,6 +7,7 @@ import (
 	"afet-yardim-twitter-bot/pkg/service"
 	"bytes"
 	"context"
+	"flag"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
@@ -83,15 +84,9 @@ func initConfig() {
 		return
 	}
 
-	envFile := func() string {
-		ef := os.Getenv("ENV_FILE")
-		if ef == "" {
-			return ".env"
-		}
-		return ef
-	}()
+	envFile := flag.String("env-file", ".env", ".env file")
 
-	err = godotenv.Load(envFile)
+	err = godotenv.Load(*envFile)
 	if err != nil {
 		log.Fatalf("unable to load env file: %v error: %e", envFile, err)
 	}
