@@ -7,6 +7,7 @@ import (
 	"afet-yardim-twitter-bot/pkg/service"
 	"bytes"
 	"context"
+	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
@@ -42,8 +43,8 @@ func Run() {
 	// start the server
 	go func() {
 		logger.Println("Starting server on", cfg.Server.HttpAddress)
-
-		err := server.ListenAndServe()
+		fmt.Printf("%+v", cfg)
+		err = server.ListenAndServe()
 		if err != nil {
 			logger.Printf("Error starting server: %s\n", err)
 			os.Exit(1)
@@ -67,10 +68,10 @@ func Run() {
 func initHTTPHandler(handlers handler.Handlers) *http.Server {
 
 	server := &http.Server{
-		Addr:         cfg.Server.HttpAddress, // configure the bind address
-		ReadTimeout:  50 * time.Second,       // max time to read request from the client
-		WriteTimeout: 100 * time.Second,      // max time to write response to the client
-		IdleTimeout:  12 * time.Second,       // max time for connections using TCP Keep-Alive
+		Addr:         ":" + cfg.Server.HttpAddress, // configure the bind address
+		ReadTimeout:  50 * time.Second,             // max time to read request from the client
+		WriteTimeout: 100 * time.Second,            // max time to write response to the client
+		IdleTimeout:  12 * time.Second,             // max time for connections using TCP Keep-Alive
 		Handler:      router.NewRouter(handlers),
 	}
 
