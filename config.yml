@@ -1,0 +1,7 @@
+mongodb:
+  uri: "mongodb+srv://challengeUser:WUMglwNBaydH8Yvu@challenge-xzwqd.mongodb.net/getir-case-study?retryWrites=true"
+  database: "getir-case-study"
+  collection: "records"
+
+server:
+  port: "8080" 
