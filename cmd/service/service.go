@@ -7,7 +7,6 @@ import (
 	"afet-yardim-twitter-bot/pkg/service"
 	"bytes"
 	"context"
-	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
@@ -43,7 +42,6 @@ func Run() {
 	// start the server
 	go func() {
 		logger.Println("Starting server on", cfg.Server.HttpAddress)
-		fmt.Printf("%+v", cfg)
 		err = server.ListenAndServe()
 		if err != nil {
 			logger.Printf("Error starting server: %s\n", err)
@@ -99,7 +97,6 @@ func initConfig() {
 	}
 
 	err = envconfig.Process("", &cfg)
-
 	if err != nil {
 		logger.Fatalf(err.Error())
 	}
