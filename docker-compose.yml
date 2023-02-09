@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  core:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: afet-yardim-twitter-bot
+    ports:
+      - "8000:8000"
+    networks:
+      - afet-yardim-twitter-bot
+
+networks:
+  afet-yardim-twitter-bot:
+    driver: bridge
